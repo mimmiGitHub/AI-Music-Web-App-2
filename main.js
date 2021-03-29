@@ -7,8 +7,8 @@ rightWristY="";
 song1_status="";
 leftWrist_score=0;
 function preload(){
-    song_1=soundLoad("songs.mp3");
-    song_2=soundLoad("ShowYourself.mp3");
+    song_1=Loadsound("songs.mp3");
+    song_2=Loadsound("ShowYourself.mp3");
 }
 function setup(){
     canvas=createCanvas(600,500);
