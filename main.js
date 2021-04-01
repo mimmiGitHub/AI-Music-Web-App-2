@@ -1,11 +1,13 @@
 song1="";
 song2="";
-leftWristX="";
-leftWristY="";
-rightWristX="";
-rightWristY="";
+leftWristX=0;
+leftWristY=0;
+rightWristX=0;
+rightWristY=0;
 song1_status="";
+song2_status="";
 leftWrist_score=0;
+rightWrist_score=0;
 function preload(){
     song_1=Loadsound("songs.mp3");
     song_2=Loadsound("ShowYourself.mp3");
@@ -28,6 +30,8 @@ function gotPoses(results)
     {
         console.log(results);
         leftWrist_score=results[0].pose.keypoints[9].score;
+        rightWrist_score=results[0].pose.keypoints[10].score;
+        console.log("Right Wrist Score="+rightWrist_score+"Left Wrist Score"+leftWrist_score);
         leftWristX=results[0].pose.leftWrist.x;
         leftWristY=results[0].pose.leftWrist.y;
         console.log("Left Wrist X="+leftWristX+"Left Wrist Y="+leftWristY);
@@ -44,12 +48,26 @@ function draw(){
     if(leftWrist_score > 0.2)
   {
     circle(leftWristX,leftWristY,20);
-    song2.stop();    
-  }
-  if(song1_status == false){
-    song1.play();
+    song_2.stop();    
+ 
+  if(song1_status == false)
+  {
+    song_1.play();
     document.getElementById("song_entry").innerHTML=song1_status;
   }
+}
+song2_status.isPlaying();
+if(rightWrist_score > 0.2)
+  {
+    circle(rightWristX,rightWristY,20);
+    song_1.stop();    
+ 
+  if(song1_status == false)
+  {
+    song_2.play();
+    document.getElementById("song_entry").innerHTML=song2_status;
+  }
+}
 }
 
     
